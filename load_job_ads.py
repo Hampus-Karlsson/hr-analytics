@@ -19,7 +19,7 @@ def get_job_ads(occupation_field: str, pages: int = 3):
             params={"occupation-field": occupation_field, "page": page}
         )
         data = response.json()
-        all_results.exted(data.get("hits",[]))
+        all_results.extend(data.get("hits",[]))
     return all_results
 
 # tre olika yrkestyper
