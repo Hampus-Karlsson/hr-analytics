@@ -1,33 +1,17 @@
-from gql import gql, Client
-from gql.transport.requests import RequestsHTTPTransport
+import datetime
 import requests
 import dlt
 
 
-# Hämta yrkesfält (occupation fields) från graphQL
-def get_occupation_fields_from_taxonomy():
-    transport = RequestsHTTPTransport(
-    url = "https://taxonomy.api.jobtechdev.se/v1/graphql",
-    headers = {"Accept": "application/json"}
-    verify=True,
-    retries=3,
-    )
+# Hämta yrkesfält (occupation fields)
+def get_occupation_fields():
+    url = "https://jobsearch.api.jobtechdev.se/metadata/occupationfields"
+    headers = {"Accept": "application/json;version=2"}
+    response = requests.get(url, headers=headers)
+    response.raise_for_status()
+    return response.json()
 
-    client =Client(transport=transport, fetch_schema_from_transport=True)
 
-    query = gql("""
-        query {
-            concepts(type:"occupation-field"){
-                id
-                preferred_label
-                }
-            }
-    """)
-
-    result = client.execute(query)
-    return result["concepts"]
-
-##anonshämtning
 def get_job_ads(occupation_field_id, page=0, size=100):
     url = "https://jobsearch.api.jobtechdev.se/search"
     headers = {"Accept": "application/json;version=2"}
@@ -41,31 +25,51 @@ def get_job_ads(occupation_field_id, page=0, size=100):
     data = response.json()
     return data.get("results", [])
 
-#dlt
-def ads_resource(ads):
+def ads_resource(occupation_field_id):
+    ads = get_job_ads(occupation_field_id)
     for ad in ads:
         yield ad
+#koddel
+def add_timestamp(ads):
+    timestamp = datetime.utcnow().isoformat()
+    for ad in ads:
+        ad["fetched_at"] = timestamp
+    return ads
 
-#Main
 if __name__ == "__main__":
-    fields = get_occupation_fields_from_taxonomy()
-    
+    fields = get_occupation_fields()
+    # Hitta några yrkesfält id:n (exempel)
     print("Några yrkesfält:")
-   
-   data_it_id =next((f['id'] for f in fields if "data" in f['preferred_label']))
+    for f in fields:
+        print(f"{f['id']}, Namn: {f['label']['sv']}")
 
-    print(f"Data/IT id: {data_it_id}")
+    # Ta id 
+    data_it_id = None
+    bygg_id = None
+    halsa_id = None
+
+    for f in fields:
+        if "data" in f['label']['sv'].lower():
+            data_it_id = f['id']
+        elif "bygg" in f['label']['sv'].lower():
+            bygg_id = f['id']
+        elif "hälso" in f['label']['sv'].lower():
+            halsa_id = f['id']
+
+    print(f"Data IT id: {data_it_id}")
     print(f"Bygg id: {bygg_id}")
     print(f"Hälsa id: {halsa_id}")
 
-    # Hämta annonser
-    data_engineering = list(get_job_ads(data_it_id))
-    construction = list(get_job_ads(bygg_id))
-    healthcare = list(get_job_ads(halsa_id))
+    data_it_ads = add_timestamp(get_job_ads(data_it_id))
+    bygg_ads = add_timestamp(get_job_ads(bygg_id))
+    halsa_ads = add_timestamp(get_job_ads(halsa_id))
 
-    print(f"Antal data-it-annonser: {len(data_engineering)}")
-    print(f"Antal bygg-annonser: {len(construction)}")
-    print(f"Antal hälsoannonser: {len(healthcare)}")
+    # Hämta annonser
+    
+
+    print(f"Antal data-it-annonser: {len(data_it_ads)}")
+    print(f"Antal bygg-annonser: {len(bygg_ads)}")
+    print(f"Antal hälsoannonser: {len(halsa_ads)}")
 
     # DLT pipeline
     pipeline = dlt.pipeline(
@@ -75,9 +79,9 @@ if __name__ == "__main__":
     )
 
     load_info = pipeline.run([
-        dlt.resource(data_engineering, name="data_it_ads"),
-        dlt.resource(construction, name="bygg_ads"),
-        dlt.resource(healthcare, name="halsa_ads")
+        dlt.resource(data_it_ads, name="data_it_ads"),
+        dlt.resource(bygg_ads, name="bygg_ads"),
+        dlt.resource(halsa_ads, name="halsa_ads")
     ])
-
+    print('pipeline completed')
     print(load_info)
