@@ -1,87 +1,109 @@
 import datetime
 import requests
+import json
 import dlt
+import pandas as pd
 
+##Steg 1 bygg api url
+## steg 2 hämta data från apin
+## steg 3 skicka in datan i duckdb
+## steg 4 verifiera att korekt data hämtas
+##steg 5
 
-# Hämta yrkesfält (occupation fields)
-def get_occupation_fields():
-    url = "https://jobsearch.api.jobtechdev.se/metadata/occupationfields"
-    headers = {"Accept": "application/json;version=2"}
-    response = requests.get(url, headers=headers)
-    response.raise_for_status()
-    return response.json()
-
-
-def get_job_ads(occupation_field_id, page=0, size=100):
-    url = "https://jobsearch.api.jobtechdev.se/search"
-    headers = {"Accept": "application/json;version=2"}
-    params = {
-        "occupation-field": occupation_field_id,
-        "page": page,
-        "size": size
-    }
-    response = requests.get(url, headers=headers, params=params)
-    response.raise_for_status()
-    data = response.json()
-    return data.get("results", [])
-
-def ads_resource(occupation_field_id):
-    ads = get_job_ads(occupation_field_id)
-    for ad in ads:
-        yield ad
-#koddel
-def add_timestamp(ads):
-    timestamp = datetime.utcnow().isoformat()
-    for ad in ads:
-        ad["fetched_at"] = timestamp
-    return ads
-
-if __name__ == "__main__":
-    fields = get_occupation_fields()
-    # Hitta några yrkesfält id:n (exempel)
-    print("Några yrkesfält:")
-    for f in fields:
-        print(f"{f['id']}, Namn: {f['label']['sv']}")
-
-    # Ta id 
-    data_it_id = None
-    bygg_id = None
-    halsa_id = None
-
-    for f in fields:
-        if "data" in f['label']['sv'].lower():
-            data_it_id = f['id']
-        elif "bygg" in f['label']['sv'].lower():
-            bygg_id = f['id']
-        elif "hälso" in f['label']['sv'].lower():
-            halsa_id = f['id']
-
-    print(f"Data IT id: {data_it_id}")
-    print(f"Bygg id: {bygg_id}")
-    print(f"Hälsa id: {halsa_id}")
-
-    data_it_ads = add_timestamp(get_job_ads(data_it_id))
-    bygg_ads = add_timestamp(get_job_ads(bygg_id))
-    halsa_ads = add_timestamp(get_job_ads(halsa_id))
-
-    # Hämta annonser
-    
-
-    print(f"Antal data-it-annonser: {len(data_it_ads)}")
-    print(f"Antal bygg-annonser: {len(bygg_ads)}")
-    print(f"Antal hälsoannonser: {len(halsa_ads)}")
-
-    # DLT pipeline
+def create_pipeline():
     pipeline = dlt.pipeline(
         pipeline_name="job_ads_pipeline",
-        destination="duckdb",
-        dataset_name="raw_data"
+        destination= dlt.destination.duckdb(str(dlt)),
+        dataset_name="staging"
     )
+    
+    print("Creating pipeline...")
+    return pipeline
 
-    load_info = pipeline.run([
-        dlt.resource(data_it_ads, name="data_it_ads"),
-        dlt.resource(bygg_ads, name="bygg_ads"),
-        dlt.resource(halsa_ads, name="halsa_ads")
-    ])
+def make_params_list(occupation_field_dict):
+    params_list =[]
+    print("Building params list...")
+    for field_name, field_code in occupation_field_dict.items():
+        print(f"Occupation field {field_name}:")
+
+        params = {
+            "occupation-field": field_code,
+            "limit":  100,
+            "offset":0,
+        }
+
+        params_list.append(params)
+    return params_list
+
+def run_pipeline(table_name, occupation_field_dict):
+    pipeline = create_pipeline
+    params_list = make_params_list(occupation_field_dict)
+    
+    #runs pipeline
+    print("Running pipeline...")
+    pipeline.run(
+        jobsearch_resource(params_list=params_list),
+        table_name=table_name
+    )
     print('pipeline completed')
-    print(load_info)
+
+
+if __name__ == "__main__":
+   
+    print("Running pipeline...")
+
+    table_name="raw_job_ads"
+
+    #occupation filed dict-mapping
+    occupation_field_dict= {
+        "Data-it" :"NYW6_mP6_vwf",
+        "Bygg-Anläggning" :"NYW6_mP6_vwf",
+        "Hälso- och sjukvård" :"NYW6_mP6_vwf"
+    }
+
+    run_pipeline(table_name, occupation_field_dict)
+
+
+
+# pipeline resource for fetching job ads ---
+@dlt.resource(write_disposition="merge", primary_key="id")
+def jobsearch_resource(params_list):
+    
+    base_url = "https://jobsearch.api.jobtechdev.se" #base url
+    url_for_search = f"{base_url}/search"
+
+    for params in params_list:
+        limit =params.get("limit", 100) #100 ads per page
+        offset =params.get("offset", 0) #0 = first page
+
+        while True:
+            page_params = dict(params, offset=offset)
+
+            data = _get_ads(url_for_search,page_params)
+
+            hits =data.get("hits, []")
+
+            if not hits:
+                break
+            
+            for ad in hits:
+                yield ad
+
+            if len(hits) < limit or offset > 1900:
+                if offset >1900:
+                        print("Reached 2000 hits -some ads might be missing")
+                break
+            
+            print(f"Fetched {len(hits)} ads..")
+
+            offset += limit
+
+def _get_ads(url_for_search, params):
+    headers = {"accept": "application/json"}
+    response =requests.get(url_for_search,headers=headers,params=params)
+    response.raise_for_status()
+    return json.loads(response.content.decode("utf8"))
+        
+
+
+    
