@@ -13,7 +13,7 @@ import pandas as pd
 def create_pipeline():
     pipeline = dlt.pipeline(
         pipeline_name="job_ads_pipeline",
-        destination= "duckdb",
+        destination=  dlt.destinations.duckdb("job_ads.duckdb"),
         dataset_name="staging"
     )
     
@@ -97,8 +97,8 @@ if __name__ == "__main__":
 
     #occupation filed dict-mapping
     occupation_field_dict= {
-        "Data-it" :"NYW6_mP6_vwf",
-        "Bygg-Anläggning" :"NYW6_mP6_vwf",
+        "Data-it" :"6Hq3_tKo_V57",
+        "Bygg-Anläggning" :"wTEr_CBC_bqh",
         "Hälso- och sjukvård" :"NYW6_mP6_vwf"
     }
 
