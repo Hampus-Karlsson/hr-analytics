@@ -1,0 +1,56 @@
+[0m11:53:21.673963 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001EBE8D615E0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001EBE8291580>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001EBEB0915E0>]}
+
+
+============================== 11:53:21.683036 | af2a1a62-8254-4850-821b-c73b0f2c7c5e ==============================
+[0m11:53:21.683036 [info ] [MainThread]: Running with dbt=1.9.4
+[0m11:53:21.685051 [debug] [MainThread]: running dbt with arguments {'printer_width': '80', 'indirect_selection': 'eager', 'write_json': 'True', 'log_cache_events': 'False', 'partial_parse': 'True', 'cache_selected_only': 'False', 'profiles_dir': 'C:\\Users\\ytask\\.dbt', 'version_check': 'True', 'warn_error': 'None', 'log_path': 'logs', 'debug': 'False', 'fail_fast': 'False', 'use_colors': 'True', 'use_experimental_parser': 'False', 'no_print': 'None', 'quiet': 'False', 'empty': 'None', 'warn_error_options': 'WarnErrorOptions(include=[], exclude=[])', 'invocation_command': 'dbt debug', 'log_format': 'default', 'static_parser': 'True', 'target_path': 'None', 'introspect': 'True', 'send_anonymous_usage_stats': 'True'}
+[0m11:53:21.730712 [info ] [MainThread]: dbt version: 1.9.4
+[0m11:53:21.731708 [info ] [MainThread]: python version: 3.12.9
+[0m11:53:21.732707 [info ] [MainThread]: python path: C:\Users\ytask\Documents\hr-analytics-project\.venv\Scripts\python.exe
+[0m11:53:21.733231 [info ] [MainThread]: os info: Windows-11-10.0.26100-SP0
+[0m11:53:21.877000 [info ] [MainThread]: Using profiles dir at C:\Users\ytask\.dbt
+[0m11:53:21.878001 [info ] [MainThread]: Using profiles.yml file at C:\Users\ytask\.dbt\profiles.yml
+[0m11:53:21.879166 [info ] [MainThread]: Using dbt_project.yml file at C:\Users\ytask\Documents\hr-analytics-project\dbt_project.yml
+[0m11:53:21.885195 [info ] [MainThread]: adapter type: duckdb
+[0m11:53:21.886199 [info ] [MainThread]: adapter version: 1.9.3
+[0m11:53:21.889199 [info ] [MainThread]: Configuration:
+[0m11:53:21.890199 [info ] [MainThread]:   profiles.yml file [[32mOK found and valid[0m]
+[0m11:53:21.891199 [info ] [MainThread]:   dbt_project.yml file [[31mERROR not found[0m]
+[0m11:53:21.892199 [info ] [MainThread]: Required dependencies:
+[0m11:53:21.893200 [debug] [MainThread]: Executing "git --help"
+[0m11:53:21.966522 [debug] [MainThread]: STDOUT: "b"usage: git [-v | --version] [-h | --help] [-C <path>] [-c <name>=<value>]\n           [--exec-path[=<path>]] [--html-path] [--man-path] [--info-path]\n           [-p | --paginate | -P | --no-pager] [--no-replace-objects] [--no-lazy-fetch]\n           [--no-optional-locks] [--no-advice] [--bare] [--git-dir=<path>]\n           [--work-tree=<path>] [--namespace=<name>] [--config-env=<name>=<envvar>]\n           <command> [<args>]\n\nThese are common Git commands used in various situations:\n\nstart a working area (see also: git help tutorial)\n   clone     Clone a repository into a new directory\n   init      Create an empty Git repository or reinitialize an existing one\n\nwork on the current change (see also: git help everyday)\n   add       Add file contents to the index\n   mv        Move or rename a file, a directory, or a symlink\n   restore   Restore working tree files\n   rm        Remove files from the working tree and from the index\n\nexamine the history and state (see also: git help revisions)\n   bisect    Use binary search to find the commit that introduced a bug\n   diff      Show changes between commits, commit and working tree, etc\n   grep      Print lines matching a pattern\n   log       Show commit logs\n   show      Show various types of objects\n   status    Show the working tree status\n\ngrow, mark and tweak your common history\n   branch    List, create, or delete branches\n   commit    Record changes to the repository\n   merge     Join two or more development histories together\n   rebase    Reapply commits on top of another base tip\n   reset     Reset current HEAD to the specified state\n   switch    Switch branches\n   tag       Create, list, delete or verify a tag object signed with GPG\n\ncollaborate (see also: git help workflows)\n   fetch     Download objects and refs from another repository\n   pull      Fetch from and integrate with another repository or a local branch\n   push      Update remote refs along with associated objects\n\n'git help -a' and 'git help -g' list available subcommands and some\nconcept guides. See 'git help <command>' or 'git help <concept>'\nto read about a specific subcommand or concept.\nSee 'git help git' for an overview of the system.\n""
+[0m11:53:21.967524 [debug] [MainThread]: STDERR: "b''"
+[0m11:53:21.967524 [info ] [MainThread]:  - git [[32mOK found[0m]
+
+[0m11:53:21.969526 [info ] [MainThread]: Connection:
+[0m11:53:21.971527 [info ] [MainThread]:   database: job_ads_pipeline
+[0m11:53:21.972526 [info ] [MainThread]:   schema: raw_data
+[0m11:53:21.972526 [info ] [MainThread]:   path: C:/Users/ytask/Documents/hr-analytics-project/job_ads_pipeline.duckdb
+[0m11:53:21.973525 [info ] [MainThread]:   config_options: None
+[0m11:53:21.973525 [info ] [MainThread]:   extensions: None
+[0m11:53:21.974523 [info ] [MainThread]:   settings: {}
+[0m11:53:21.975524 [info ] [MainThread]:   external_root: .
+[0m11:53:21.975524 [info ] [MainThread]:   use_credential_provider: None
+[0m11:53:21.976523 [info ] [MainThread]:   attach: None
+[0m11:53:21.977523 [info ] [MainThread]:   filesystems: None
+[0m11:53:21.977523 [info ] [MainThread]:   remote: None
+[0m11:53:21.978524 [info ] [MainThread]:   plugins: None
+[0m11:53:21.978524 [info ] [MainThread]:   disable_transactions: False
+[0m11:53:21.979523 [info ] [MainThread]: Registered adapter: duckdb=1.9.3
+[0m11:53:22.339484 [debug] [MainThread]: Acquiring new duckdb connection 'debug'
+[0m11:53:22.453228 [debug] [MainThread]: Using duckdb connection "debug"
+[0m11:53:22.453228 [debug] [MainThread]: On debug: select 1 as id
+[0m11:53:22.454216 [debug] [MainThread]: Opening a new connection, currently in state init
+[0m11:53:22.480218 [debug] [MainThread]: SQL status: OK in 0.026 seconds
+[0m11:53:22.481212 [debug] [MainThread]: On debug: Close
+[0m11:53:22.482211 [info ] [MainThread]:   Connection test: [[32mOK connection ok[0m]
+
+[0m11:53:22.483215 [info ] [MainThread]: [31m1 check failed:[0m
+[0m11:53:22.484258 [info ] [MainThread]: Project loading failed for the following reason:
+ project path <C:\Users\ytask\Documents\hr-analytics-project\dbt_project.yml> not found
+
+[0m11:53:22.486234 [debug] [MainThread]: Command `dbt debug` failed at 11:53:22.486234 after 1.17 seconds
+[0m11:53:22.487228 [debug] [MainThread]: Connection 'debug' was properly closed.
+[0m11:53:22.487228 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001EBEC3CAB70>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001EBEC3BB290>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001EBEB28FA40>]}
+[0m11:53:22.488232 [debug] [MainThread]: Flushing usage events
+[0m11:53:23.298033 [debug] [MainThread]: An error was encountered while trying to flush usage events

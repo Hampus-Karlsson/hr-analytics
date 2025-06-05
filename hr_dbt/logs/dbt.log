@@ -1,0 +1,145 @@
+[0m11:43:47.952975 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000025665307680>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000002566573EF60>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x00000256658C9340>]}
+
+
+============================== 11:43:48.106563 | 9c366783-2503-45a2-bf69-4018177d462d ==============================
+[0m11:43:48.106563 [info ] [MainThread]: Running with dbt=1.9.4
+[0m11:43:48.107566 [debug] [MainThread]: running dbt with arguments {'printer_width': '80', 'indirect_selection': 'eager', 'write_json': 'True', 'log_cache_events': 'False', 'partial_parse': 'True', 'cache_selected_only': 'False', 'warn_error': 'None', 'debug': 'False', 'profiles_dir': 'C:\\Users\\ytask\\.dbt', 'log_path': 'logs', 'fail_fast': 'False', 'version_check': 'True', 'use_colors': 'True', 'use_experimental_parser': 'False', 'empty': 'None', 'quiet': 'False', 'no_print': 'None', 'log_format': 'default', 'invocation_command': 'dbt init hr_project', 'static_parser': 'True', 'warn_error_options': 'WarnErrorOptions(include=[], exclude=[])', 'target_path': 'None', 'introspect': 'True', 'send_anonymous_usage_stats': 'True'}
+[0m11:43:48.658298 [warn ] [MainThread]: [ConfigFolderDirectory]: Unable to parse logging event dictionary. Failed to parse dir field: expected string or bytes-like object, got 'WindowsPath'.. Dictionary: {'dir': WindowsPath('C:/Users/ytask/.dbt')}
+[0m11:43:48.659296 [info ] [MainThread]: Creating dbt configuration folder at 
+[0m11:43:48.681019 [debug] [MainThread]: Starter project path: C:\Users\ytask\Documents\hr-analytics-project\.venv\Lib\site-packages\dbt\include\starter_project
+[0m11:43:48.726027 [info ] [MainThread]: 
+Your new dbt project "hr_project" was created!
+
+For more information on how to configure the profiles.yml file,
+please consult the dbt documentation here:
+
+  https://docs.getdbt.com/docs/configure-your-profile
+
+One more thing:
+
+Need help? Don't hesitate to reach out to us via GitHub issues or on Slack:
+
+  https://community.getdbt.com/
+
+Happy modeling!
+
+[0m11:43:48.728027 [info ] [MainThread]: Setting up your profile.
+[0m11:43:48.730032 [error] [MainThread]: Encountered an error:
+Runtime Error
+  No adapters available. Learn how to install an adapter by going to https://docs.getdbt.com/docs/connect-adapters#install-using-the-cli
+[0m11:43:48.731541 [debug] [MainThread]: Command `dbt init` failed at 11:43:48.730032 after 1.15 seconds
+[0m11:43:48.731541 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000025666E486E0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000025666C93140>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000025666E5FCB0>]}
+[0m11:43:48.732552 [debug] [MainThread]: Flushing usage events
+[0m11:43:49.347331 [debug] [MainThread]: An error was encountered while trying to flush usage events
+[0m11:50:20.463171 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000002B5650B1E50>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000002B562D3C380>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000002B562E41460>]}
+
+
+============================== 11:50:20.472200 | 475db238-d761-4ca8-847a-7c8cccd673fc ==============================
+[0m11:50:20.472200 [info ] [MainThread]: Running with dbt=1.9.4
+[0m11:50:20.474196 [debug] [MainThread]: running dbt with arguments {'printer_width': '80', 'indirect_selection': 'eager', 'write_json': 'True', 'log_cache_events': 'False', 'partial_parse': 'True', 'cache_selected_only': 'False', 'warn_error': 'None', 'debug': 'False', 'version_check': 'True', 'log_path': 'logs', 'fail_fast': 'False', 'profiles_dir': 'C:\\Users\\ytask\\.dbt', 'use_colors': 'True', 'use_experimental_parser': 'False', 'empty': 'None', 'quiet': 'False', 'no_print': 'None', 'log_format': 'default', 'invocation_command': 'dbt debug', 'introspect': 'True', 'static_parser': 'True', 'target_path': 'None', 'warn_error_options': 'WarnErrorOptions(include=[], exclude=[])', 'send_anonymous_usage_stats': 'True'}
+[0m11:50:20.544827 [info ] [MainThread]: dbt version: 1.9.4
+[0m11:50:20.545881 [info ] [MainThread]: python version: 3.12.9
+[0m11:50:20.546849 [info ] [MainThread]: python path: C:\Users\ytask\Documents\hr-analytics-project\.venv\Scripts\python.exe
+[0m11:50:20.546849 [info ] [MainThread]: os info: Windows-11-10.0.26100-SP0
+[0m11:50:20.797578 [info ] [MainThread]: Using profiles dir at C:\Users\ytask\.dbt
+[0m11:50:20.798576 [info ] [MainThread]: Using profiles.yml file at C:\Users\ytask\.dbt\profiles.yml
+[0m11:50:20.799576 [info ] [MainThread]: Using dbt_project.yml file at C:\Users\ytask\Documents\hr-analytics-project\hr_dbt\dbt_project.yml
+[0m11:50:20.806460 [info ] [MainThread]: adapter type: duckdb
+[0m11:50:20.807468 [info ] [MainThread]: adapter version: 1.9.3
+[0m11:50:20.808452 [info ] [MainThread]: Configuration:
+[0m11:50:20.810466 [info ] [MainThread]:   profiles.yml file [[32mOK found and valid[0m]
+[0m11:50:20.814453 [info ] [MainThread]:   dbt_project.yml file [[31mERROR not found[0m]
+[0m11:50:20.816448 [info ] [MainThread]: Required dependencies:
+[0m11:50:20.817452 [debug] [MainThread]: Executing "git --help"
+[0m11:50:20.920987 [debug] [MainThread]: STDOUT: "b"usage: git [-v | --version] [-h | --help] [-C <path>] [-c <name>=<value>]\n           [--exec-path[=<path>]] [--html-path] [--man-path] [--info-path]\n           [-p | --paginate | -P | --no-pager] [--no-replace-objects] [--no-lazy-fetch]\n           [--no-optional-locks] [--no-advice] [--bare] [--git-dir=<path>]\n           [--work-tree=<path>] [--namespace=<name>] [--config-env=<name>=<envvar>]\n           <command> [<args>]\n\nThese are common Git commands used in various situations:\n\nstart a working area (see also: git help tutorial)\n   clone     Clone a repository into a new directory\n   init      Create an empty Git repository or reinitialize an existing one\n\nwork on the current change (see also: git help everyday)\n   add       Add file contents to the index\n   mv        Move or rename a file, a directory, or a symlink\n   restore   Restore working tree files\n   rm        Remove files from the working tree and from the index\n\nexamine the history and state (see also: git help revisions)\n   bisect    Use binary search to find the commit that introduced a bug\n   diff      Show changes between commits, commit and working tree, etc\n   grep      Print lines matching a pattern\n   log       Show commit logs\n   show      Show various types of objects\n   status    Show the working tree status\n\ngrow, mark and tweak your common history\n   branch    List, create, or delete branches\n   commit    Record changes to the repository\n   merge     Join two or more development histories together\n   rebase    Reapply commits on top of another base tip\n   reset     Reset current HEAD to the specified state\n   switch    Switch branches\n   tag       Create, list, delete or verify a tag object signed with GPG\n\ncollaborate (see also: git help workflows)\n   fetch     Download objects and refs from another repository\n   pull      Fetch from and integrate with another repository or a local branch\n   push      Update remote refs along with associated objects\n\n'git help -a' and 'git help -g' list available subcommands and some\nconcept guides. See 'git help <command>' or 'git help <concept>'\nto read about a specific subcommand or concept.\nSee 'git help git' for an overview of the system.\n""
+[0m11:50:20.921989 [debug] [MainThread]: STDERR: "b''"
+[0m11:50:20.922990 [info ] [MainThread]:  - git [[32mOK found[0m]
+
+[0m11:50:20.923988 [info ] [MainThread]: Connection:
+[0m11:50:20.924992 [info ] [MainThread]:   database: job_ads_pipeline
+[0m11:50:20.925991 [info ] [MainThread]:   schema: raw_data
+[0m11:50:20.926989 [info ] [MainThread]:   path: C:/Users/ytask/Documents/hr-analytics-project/job_ads_pipeline.duckdb
+[0m11:50:20.927989 [info ] [MainThread]:   config_options: None
+[0m11:50:20.928998 [info ] [MainThread]:   extensions: None
+[0m11:50:20.930988 [info ] [MainThread]:   settings: {}
+[0m11:50:20.932987 [info ] [MainThread]:   external_root: .
+[0m11:50:20.933989 [info ] [MainThread]:   use_credential_provider: None
+[0m11:50:20.934988 [info ] [MainThread]:   attach: None
+[0m11:50:20.935989 [info ] [MainThread]:   filesystems: None
+[0m11:50:20.936987 [info ] [MainThread]:   remote: None
+[0m11:50:20.940986 [info ] [MainThread]:   plugins: None
+[0m11:50:20.941988 [info ] [MainThread]:   disable_transactions: False
+[0m11:50:20.943987 [info ] [MainThread]: Registered adapter: duckdb=1.9.3
+[0m11:50:21.306062 [debug] [MainThread]: Acquiring new duckdb connection 'debug'
+[0m11:50:25.659964 [debug] [MainThread]: Using duckdb connection "debug"
+[0m11:50:25.659964 [debug] [MainThread]: On debug: select 1 as id
+[0m11:50:25.660965 [debug] [MainThread]: Opening a new connection, currently in state init
+[0m11:50:25.862259 [debug] [MainThread]: SQL status: OK in 0.201 seconds
+[0m11:50:25.863259 [debug] [MainThread]: On debug: Close
+[0m11:50:25.864258 [info ] [MainThread]:   Connection test: [[32mOK connection ok[0m]
+
+[0m11:50:25.865258 [info ] [MainThread]: [31m1 check failed:[0m
+[0m11:50:25.866259 [info ] [MainThread]: Project loading failed for the following reason:
+ project path <C:\Users\ytask\Documents\hr-analytics-project\hr_dbt\dbt_project.yml> not found
+
+[0m11:50:25.868259 [debug] [MainThread]: Command `dbt debug` failed at 11:50:25.867257 after 5.71 seconds
+[0m11:50:25.868259 [debug] [MainThread]: Connection 'debug' was properly closed.
+[0m11:50:25.869268 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000002B565BEE600>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000002B565D6C800>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000002B5650B1E50>]}
+[0m11:50:25.869268 [debug] [MainThread]: Flushing usage events
+[0m11:50:26.389253 [debug] [MainThread]: An error was encountered while trying to flush usage events
+[0m11:54:33.164655 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001A42451FCE0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001A42451FDA0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001A42451FB30>]}
+
+
+============================== 11:54:33.172653 | 52451b5a-d101-451b-9718-3985f834a0f5 ==============================
+[0m11:54:33.172653 [info ] [MainThread]: Running with dbt=1.9.4
+[0m11:54:33.174659 [debug] [MainThread]: running dbt with arguments {'printer_width': '80', 'indirect_selection': 'eager', 'log_cache_events': 'False', 'write_json': 'True', 'partial_parse': 'True', 'cache_selected_only': 'False', 'profiles_dir': 'C:\\Users\\ytask\\.dbt', 'version_check': 'True', 'fail_fast': 'False', 'log_path': 'logs', 'debug': 'False', 'warn_error': 'None', 'use_colors': 'True', 'use_experimental_parser': 'False', 'empty': 'None', 'quiet': 'False', 'no_print': 'None', 'log_format': 'default', 'invocation_command': 'dbt debug', 'warn_error_options': 'WarnErrorOptions(include=[], exclude=[])', 'static_parser': 'True', 'target_path': 'None', 'introspect': 'True', 'send_anonymous_usage_stats': 'True'}
+[0m11:54:33.214046 [info ] [MainThread]: dbt version: 1.9.4
+[0m11:54:33.215057 [info ] [MainThread]: python version: 3.12.9
+[0m11:54:33.216047 [info ] [MainThread]: python path: C:\Users\ytask\Documents\hr-analytics-project\.venv\Scripts\python.exe
+[0m11:54:33.217049 [info ] [MainThread]: os info: Windows-11-10.0.26100-SP0
+[0m11:54:33.364632 [info ] [MainThread]: Using profiles dir at C:\Users\ytask\.dbt
+[0m11:54:33.365621 [info ] [MainThread]: Using profiles.yml file at C:\Users\ytask\.dbt\profiles.yml
+[0m11:54:33.366687 [info ] [MainThread]: Using dbt_project.yml file at C:\Users\ytask\Documents\hr-analytics-project\hr_dbt\dbt_project.yml
+[0m11:54:33.372707 [info ] [MainThread]: adapter type: duckdb
+[0m11:54:33.374706 [info ] [MainThread]: adapter version: 1.9.3
+[0m11:54:33.375705 [info ] [MainThread]: Configuration:
+[0m11:54:33.376707 [info ] [MainThread]:   profiles.yml file [[32mOK found and valid[0m]
+[0m11:54:33.378708 [info ] [MainThread]:   dbt_project.yml file [[31mERROR not found[0m]
+[0m11:54:33.379707 [info ] [MainThread]: Required dependencies:
+[0m11:54:33.382715 [debug] [MainThread]: Executing "git --help"
+[0m11:54:33.449444 [debug] [MainThread]: STDOUT: "b"usage: git [-v | --version] [-h | --help] [-C <path>] [-c <name>=<value>]\n           [--exec-path[=<path>]] [--html-path] [--man-path] [--info-path]\n           [-p | --paginate | -P | --no-pager] [--no-replace-objects] [--no-lazy-fetch]\n           [--no-optional-locks] [--no-advice] [--bare] [--git-dir=<path>]\n           [--work-tree=<path>] [--namespace=<name>] [--config-env=<name>=<envvar>]\n           <command> [<args>]\n\nThese are common Git commands used in various situations:\n\nstart a working area (see also: git help tutorial)\n   clone     Clone a repository into a new directory\n   init      Create an empty Git repository or reinitialize an existing one\n\nwork on the current change (see also: git help everyday)\n   add       Add file contents to the index\n   mv        Move or rename a file, a directory, or a symlink\n   restore   Restore working tree files\n   rm        Remove files from the working tree and from the index\n\nexamine the history and state (see also: git help revisions)\n   bisect    Use binary search to find the commit that introduced a bug\n   diff      Show changes between commits, commit and working tree, etc\n   grep      Print lines matching a pattern\n   log       Show commit logs\n   show      Show various types of objects\n   status    Show the working tree status\n\ngrow, mark and tweak your common history\n   branch    List, create, or delete branches\n   commit    Record changes to the repository\n   merge     Join two or more development histories together\n   rebase    Reapply commits on top of another base tip\n   reset     Reset current HEAD to the specified state\n   switch    Switch branches\n   tag       Create, list, delete or verify a tag object signed with GPG\n\ncollaborate (see also: git help workflows)\n   fetch     Download objects and refs from another repository\n   pull      Fetch from and integrate with another repository or a local branch\n   push      Update remote refs along with associated objects\n\n'git help -a' and 'git help -g' list available subcommands and some\nconcept guides. See 'git help <command>' or 'git help <concept>'\nto read about a specific subcommand or concept.\nSee 'git help git' for an overview of the system.\n""
+[0m11:54:33.449444 [debug] [MainThread]: STDERR: "b''"
+[0m11:54:33.450442 [info ] [MainThread]:  - git [[32mOK found[0m]
+
+[0m11:54:33.450442 [info ] [MainThread]: Connection:
+[0m11:54:33.451444 [info ] [MainThread]:   database: job_ads_pipeline
+[0m11:54:33.452442 [info ] [MainThread]:   schema: raw_data
+[0m11:54:33.453443 [info ] [MainThread]:   path: C:/Users/ytask/Documents/hr-analytics-project/job_ads_pipeline.duckdb
+[0m11:54:33.454443 [info ] [MainThread]:   config_options: None
+[0m11:54:33.455444 [info ] [MainThread]:   extensions: None
+[0m11:54:33.455444 [info ] [MainThread]:   settings: {}
+[0m11:54:33.456448 [info ] [MainThread]:   external_root: .
+[0m11:54:33.458446 [info ] [MainThread]:   use_credential_provider: None
+[0m11:54:33.459445 [info ] [MainThread]:   attach: None
+[0m11:54:33.459445 [info ] [MainThread]:   filesystems: None
+[0m11:54:33.460444 [info ] [MainThread]:   remote: None
+[0m11:54:33.462443 [info ] [MainThread]:   plugins: None
+[0m11:54:33.464444 [info ] [MainThread]:   disable_transactions: False
+[0m11:54:33.465443 [info ] [MainThread]: Registered adapter: duckdb=1.9.3
+[0m11:54:33.818452 [debug] [MainThread]: Acquiring new duckdb connection 'debug'
+[0m11:54:33.928347 [debug] [MainThread]: Using duckdb connection "debug"
+[0m11:54:33.928347 [debug] [MainThread]: On debug: select 1 as id
+[0m11:54:33.928347 [debug] [MainThread]: Opening a new connection, currently in state init
+[0m11:54:33.954621 [debug] [MainThread]: SQL status: OK in 0.026 seconds
+[0m11:54:33.956628 [debug] [MainThread]: On debug: Close
+[0m11:54:33.956628 [info ] [MainThread]:   Connection test: [[32mOK connection ok[0m]
+
+[0m11:54:33.957617 [info ] [MainThread]: [31m1 check failed:[0m
+[0m11:54:33.958622 [info ] [MainThread]: Project loading failed for the following reason:
+ project path <C:\Users\ytask\Documents\hr-analytics-project\hr_dbt\dbt_project.yml> not found
+
+[0m11:54:33.960621 [debug] [MainThread]: Command `dbt debug` failed at 11:54:33.960621 after 1.08 seconds
+[0m11:54:33.961629 [debug] [MainThread]: Connection 'debug' was properly closed.
+[0m11:54:33.961629 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001A4256352B0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001A42561AB70>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001A4255943E0>]}
+[0m11:54:33.961629 [debug] [MainThread]: Flushing usage events
+[0m11:54:34.583004 [debug] [MainThread]: An error was encountered while trying to flush usage events
