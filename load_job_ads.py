@@ -13,7 +13,7 @@ import pandas as pd
 def create_pipeline():
     pipeline = dlt.pipeline(
         pipeline_name="job_ads_pipeline",
-        destination= dlt.destination.duckdb(str(dlt)),
+        destination= "duckdb",
         dataset_name="staging"
     )
     
@@ -35,35 +35,12 @@ def make_params_list(occupation_field_dict):
         params_list.append(params)
     return params_list
 
-def run_pipeline(table_name, occupation_field_dict):
-    pipeline = create_pipeline
-    params_list = make_params_list(occupation_field_dict)
-    
-    #runs pipeline
-    print("Running pipeline...")
-    pipeline.run(
-        jobsearch_resource(params_list=params_list),
-        table_name=table_name
-    )
-    print('pipeline completed')
-
-
-if __name__ == "__main__":
-   
-    print("Running pipeline...")
-
-    table_name="raw_job_ads"
-
-    #occupation filed dict-mapping
-    occupation_field_dict= {
-        "Data-it" :"NYW6_mP6_vwf",
-        "Bygg-Anläggning" :"NYW6_mP6_vwf",
-        "Hälso- och sjukvård" :"NYW6_mP6_vwf"
-    }
-
-    run_pipeline(table_name, occupation_field_dict)
-
-
+def _get_ads(url_for_search, params):
+    headers = {"accept": "application/json"}
+    response =requests.get(url_for_search,headers=headers,params=params)
+    response.raise_for_status()
+    return json.loads(response.content.decode("utf8"))
+        
 
 # pipeline resource for fetching job ads ---
 @dlt.resource(write_disposition="merge", primary_key="id")
@@ -98,12 +75,40 @@ def jobsearch_resource(params_list):
 
             offset += limit
 
-def _get_ads(url_for_search, params):
-    headers = {"accept": "application/json"}
-    response =requests.get(url_for_search,headers=headers,params=params)
-    response.raise_for_status()
-    return json.loads(response.content.decode("utf8"))
-        
+def run_pipeline(table_name, occupation_field_dict):
+    pipeline = create_pipeline()
+    params_list = make_params_list(occupation_field_dict)
+    
+    #runs pipeline
+    print("Running pipeline...")
+    pipeline.run(
+        jobsearch_resource(params_list=params_list),
+        table_name=table_name
+    )
+    print('pipeline completed')
+
+
+
+if __name__ == "__main__":
+   
+    print("Running pipeline...")
+
+    table_name="raw_job_ads"
+
+    #occupation filed dict-mapping
+    occupation_field_dict= {
+        "Data-it" :"NYW6_mP6_vwf",
+        "Bygg-Anläggning" :"NYW6_mP6_vwf",
+        "Hälso- och sjukvård" :"NYW6_mP6_vwf"
+    }
+
+    run_pipeline(table_name, occupation_field_dict)
+
+
+
+
+
+
 
 
     
