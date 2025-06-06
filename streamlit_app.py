@@ -9,7 +9,7 @@ st.markdown("Data hämtad från Jobtech API via DLT och lagrad i DuckDB")
 # Ladda data
 @st.cache_data
 def load_data():
-    con = duckdb.connect(database="job_ads_pipeline.duckdb")
+    con = duckdb.connect(database="job_ads.duckdb")
     df = con.execute("SELECT * FROM raw_job_ads").fetchdf()
     return df
 
