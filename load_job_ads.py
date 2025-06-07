@@ -97,8 +97,8 @@ if __name__ == "__main__":
     
     #occupation filed dict-mapping
     occupation_field_dict= {
-        "Data-it" :"6Hq3_tKo_V57",
-        "Bygg-Anläggning" :"wTEr_CBC_bqh",
+        "Yrken med teknisk inriktning" :"6Hq3_tKo_V57",
+        "Industriell tillverkning" :"wTEr_CBC_bqh",
         "Hälso- och sjukvård" :"NYW6_mP6_vwf"
     }
 
