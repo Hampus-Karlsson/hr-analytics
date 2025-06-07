@@ -58,7 +58,7 @@ def jobsearch_resource(params_list):
 
             data = _get_ads(url_for_search,page_params)
 
-            hits =data.get("hits, []")
+            hits =data.get("hits", [])
 
             if not hits:
                 break
@@ -94,7 +94,7 @@ if __name__ == "__main__":
     print("Running pipeline...")
 
     table_name="raw_job_ads"
-
+    
     #occupation filed dict-mapping
     occupation_field_dict= {
         "Data-it" :"6Hq3_tKo_V57",
@@ -103,6 +103,7 @@ if __name__ == "__main__":
     }
 
     run_pipeline(table_name, occupation_field_dict)
+    
 
 
 
